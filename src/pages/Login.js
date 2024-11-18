@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+
+
 const Login = () => {
   const [apiData, setApiData] = useState([]);
   const [email, setEmail] = useState("");
@@ -19,29 +22,26 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("email: ", email);
-    console.log("password: ", password);
-
     if (email) {
       if (password) {
         let EmailData = apiData.filter((items) => items.email == email);
-        console.log("db true");
         if (EmailData.length === 0) {
-          alert("can't see your email, pls register first");
+          toast.error("can't see your email, pls register first");
           navigate("/Signup");
         } else {
           if (password == EmailData[0]?.password) {
-            alert("login successfully");
-            navigate("/Products");
+            toast.success("login successfully");
+            sessionStorage.setItem("userData", EmailData);
+            navigate("/");
           } else {
-            alert("please enter correct password");
+            toast.warning("please enter correct password");
           }
         }
       } else {
-        alert("please fill the password");
+        toast.error("please fill the password");
       }
     } else {
-      alert("please fill the email");
+      toast.error("please fill the email");
     }
   };
 
@@ -77,6 +77,17 @@ const Login = () => {
           </Link>
         </div>
       </form>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

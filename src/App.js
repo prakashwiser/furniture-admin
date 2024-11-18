@@ -1,19 +1,21 @@
-import './App.css';
+import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AddProduct from "./pages/AddProduct";
 import Products from "./pages/Products";
 import Login from "./pages/Login";
-import Signup from './pages/Signup';
+import Signup from "./pages/Signup";
+import Error from "./pages/Error";
 function App() {
   return (
     <Router>
-    <Routes>
-      <Route path="/" element={<AddProduct />} />
-      <Route path="/Products" element={<Products />} />
-      <Route path="/Login" element={<Login />} />
-      <Route path="/Signup" element={<Signup />} />
-    </Routes>
-  </Router>
+      <Routes>
+        <Route path="/" element={<Products />} />
+        <Route path="/AddProduct" element={<AddProduct />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </Router>
   );
 }
 

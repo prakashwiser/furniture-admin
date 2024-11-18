@@ -3,6 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const Signup = () => {
   const [num, setNum] = useState("");
@@ -13,10 +14,9 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hi");
     if (password == repassword) {
       if (email == "" && password == "")
-        return alert("invaild email or password");
+        return toast.error("invaild email or password");
       axios.post("https://66f0f85341537919154f06e7.mockapi.io/signup", {
         num,
         email,
@@ -28,7 +28,7 @@ const Signup = () => {
       setRepassword("");
       navigate("/Signin");
     } else {
-      alert("Miss Match Password");
+      toast.warn("Miss Match Password");
     }
   };
   const DeleteData = (id) => {
@@ -39,13 +39,13 @@ const Signup = () => {
       <h1 className="fw-bold text-danger">Sign Up</h1>
       <form className="w-25" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+          <label htmlFor="Number" className="form-label">
             Number
           </label>
           <input
             type="number"
             className="form-control"
-            id="name"
+            id="Number"
             placeholder="Enter Number"
             value={num}
             onChange={(e) => setNum(e.target.value)}
@@ -53,7 +53,7 @@ const Signup = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+          <label htmlFor="email" className="form-label">
             Email
           </label>
           <input
@@ -67,7 +67,7 @@ const Signup = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+          <label htmlFor="password" className="form-label">
             Password
           </label>
           <input
@@ -80,7 +80,7 @@ const Signup = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+          <label htmlFor="password" className="form-label">
             Conform Password
           </label>
           <input
@@ -97,15 +97,25 @@ const Signup = () => {
             Sign up
           </button>
           <button
-          onClick={()=>DeleteData(1)}
-          type="submit"
-          className="btn btn-danger  fw-bold px-4"
-        >
-          Delete
-        </button>
+            onClick={() => DeleteData(1)}
+            type="submit"
+            className="btn btn-danger  fw-bold px-4"
+          >
+            Delete
+          </button>
         </div>
-       
       </form>
+      <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

@@ -9,30 +9,32 @@ const AddProduct = () => {
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [imageData, setImageData] = useState("");
+  const [discription, setDiscription] = useState("");
   const [listingType, setListingType] = useState("others");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('submit button clicked');
-    
+    console.log("submit button clicked");
+
     try {
       axios.post(`https://67346355a042ab85d119f3fa.mockapi.io/products`, {
         name,
         price,
         image,
+        discription,
         listingType,
-      })
+      });
     } catch (error) {
       console.log(error);
-      
     }
-    
+
     setName("");
     setPrice("");
     setImage("");
     setImageData("");
     setListingType("others");
+    navigate("/Products");
   };
 
   const handleImageChange = (e) => {
@@ -104,6 +106,21 @@ const AddProduct = () => {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="message" className="form-label">
+            Message
+          </label>
+          <textarea
+            className="form-control"
+            id="message"
+            value={discription}
+            onChange={(e) => setDiscription(e.target.value)}
+            required
+            role="10"
+            rows={10} 
+            cols={120} 
           />
         </div>
         <div className="mb-3">
