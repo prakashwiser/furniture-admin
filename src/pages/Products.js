@@ -24,6 +24,7 @@ const Products = () => {
         setAPIData(getData.data);
       });
   };
+  
   const handleDelete = (id) => {
     axios
       .delete(`https://67346355a042ab85d119f3fa.mockapi.io/products/${id}`)
@@ -31,15 +32,12 @@ const Products = () => {
         getData();
       });
   };
-  const handleUpdate = (id) => {
-    axios
-      .put(`https://67346355a042ab85d119f3fa.mockapi.io/products/${id}`)
-      .then(() => {
-        navigate("/AddProduct");
-      })
-      .catch((error) => {
-        toast.error("Error updating product:", error.message);
-      });
+  
+  const handleUpdate = (id, name, price, image, listType) => {
+    let datas = {id, name, price, image, listType}
+    console.log(datas);
+    
+      navigate(`/UpdatePro/${id}`)
   };
   useEffect(() => {
     let User = sessionStorage.getItem("userData");
@@ -104,7 +102,7 @@ const Products = () => {
                         <Table.Cell>
                           <Button
                             className="ui green button"
-                            onClick={() => handleUpdate(data.id)}
+                            onClick={() => handleUpdate(data.id, data.name, data.price, data.image, data.listingType)}
                           >
                             Update
                           </Button>
