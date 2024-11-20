@@ -1,11 +1,10 @@
-"use client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-
+import { Container } from "react-bootstrap";
 
 const Login = () => {
   const [apiData, setApiData] = useState([]);
@@ -46,49 +45,51 @@ const Login = () => {
   };
 
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-dark text-white">
-      <a href="https://github.com/prakashwiser/"></a>
-      <h1 className="fw-bold text-success py-4">Sign in</h1>
-      <form className="w-25" onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            placeholder="Enter Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="mb-3">
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter Password"
-          />
-        </div>
-        <div className="d-flex justify-content-between mt-4">
-          <button type="submit" className="btn btn-primary fw-bold">
-            Sign in
-          </button>
-          <Link to={"/UpdatePassword"} className="btn btn-primary fw-bold">
-            Forget Password
-          </Link>
-        </div>
-      </form>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-    </div>
+    <Container>
+      <div className="d-flex flex-column justify-content-center align-items-center vh-100  text-white">
+        <a href="https://github.com/prakashwiser/"></a>
+        <h1 className="fw-bold text-success py-4">Sign in</h1>
+        <form className="width_tybe" onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              placeholder="Enter Email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter Password"
+            />
+          </div>
+          <div className="d-flex justify-content-between mt-4">
+            <button type="submit" className="btn btn-primary fw-bold">
+              Sign in
+            </button>
+            <Link to={"/UpdatePassword"} className="btn btn-warning text-white fw-bold">
+              Forget Password
+            </Link>
+          </div>
+        </form>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
+    </Container>
   );
 };
 export default Login;

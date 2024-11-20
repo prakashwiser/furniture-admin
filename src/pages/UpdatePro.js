@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 const UpdatePro = () => {
   let { id } = useParams();
-  console.log(id);
   useEffect(() => {
     axios
       .get(`https://67346355a042ab85d119f3fa.mockapi.io/products`)

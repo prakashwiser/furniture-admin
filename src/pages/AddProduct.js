@@ -119,8 +119,8 @@ const AddProduct = () => {
             onChange={(e) => setDiscription(e.target.value)}
             required
             role="10"
-            rows={10} 
-            cols={120} 
+            rows={10}
+            cols={120}
           />
         </div>
         <div className="mb-3">

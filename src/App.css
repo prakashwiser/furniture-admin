@@ -9,4 +9,13 @@
 }
 
 .error-page p {
-  font-size: 1.2rem;}
+  font-size: 1.2rem;
+}
+.width_tybe {
+  width: 50%;
+}
+@media (max-width: 992px) {
+  .width_tybe {
+    width: 100%;
+  }
+}
