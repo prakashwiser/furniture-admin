@@ -72,8 +72,8 @@ const Login = () => {
             <button type="submit" className="btn btn-primary fw-bold">
               Sign in
             </button>
-            <Link to={"/UpdatePassword"} className="btn btn-warning text-white fw-bold">
-              Forget Password
+            <Link to={"/Signup"} className="btn btn-warning text-white fw-bold">
+              Create Acoount
             </Link>
           </div>
         </form>

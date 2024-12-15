@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 const UpdatePro = () => {
   let { id } = useParams();
+
   useEffect(() => {
     axios
       .get(`https://67346355a042ab85d119f3fa.mockapi.io/products`)
@@ -13,9 +14,9 @@ const UpdatePro = () => {
         let filter = data.filter((items) => items.id == id);
         setName(filter[0].name);
         setPrice(filter[0].price);
-        setDiscription([0].discription);
-        setImageData([0].image);
-        setListingType([0].listingType);
+        setDiscription(filter[0].discription);
+        setImage(filter[0].image);
+        setListingType(filter[0].listingType);
       });
   }, []);
 
@@ -26,30 +27,29 @@ const UpdatePro = () => {
   const [imageData, setImageData] = useState("");
   const [discription, setDiscription] = useState("");
   const [listingType, setListingType] = useState("others");
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log("submit button clicked");
-
-    try {
-      axios.post(`https://67346355a042ab85d119f3fa.mockapi.io/products`, {
+    axios
+      .put(`https://67346355a042ab85d119f3fa.mockapi.io/products/${id}`, {
+        image,
         name,
         price,
-        image,
         discription,
         listingType,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    } catch (error) {
-      console.log(error);
-    }
 
     setName("");
     setPrice("");
     setImage("");
-    setImageData("");
+    setDiscription("");
     setListingType("others");
-    navigate("/Products");
+    navigate("/");
   };
 
   const handleImageChange = (e) => {
@@ -64,7 +64,8 @@ const UpdatePro = () => {
       setImage(file.name);
     }
   };
-
+  let imageUrl =
+    "https://raw.githubusercontent.com/prakashwiser/furniture-user-page/refs/heads/main/src/pages/home/images/";
   return (
     <div className="container w-50 m-auto vh-100 d-flex flex-column justify-content-center">
       <div
@@ -86,12 +87,11 @@ const UpdatePro = () => {
             id="image"
             accept="image/*"
             onChange={handleImageChange}
-            required
           />
         </div>
-        {imageData && (
+        {image && (
           <img
-            src={imageData}
+            src={imageUrl + image}
             alt="Selected"
             className="img-fluid mb-3"
             style={{ maxWidth: "200px" }}

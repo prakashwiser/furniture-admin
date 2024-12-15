@@ -11,11 +11,7 @@ const Products = () => {
   const [APIData, setAPIData] = useState([]);
   const [storage, setStorage] = useState("");
   useEffect(() => {
-    axios
-      .get(`https://67346355a042ab85d119f3fa.mockapi.io/products`)
-      .then((response) => {
-        setAPIData(response.data);
-      });
+    getData()
   }, []);
 
   const getData = () => {

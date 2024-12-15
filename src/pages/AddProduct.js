@@ -19,9 +19,9 @@ const AddProduct = () => {
 
     try {
       axios.post(`https://67346355a042ab85d119f3fa.mockapi.io/products`, {
+        image,
         name,
         price,
-        image,
         discription,
         listingType,
       });
@@ -34,7 +34,7 @@ const AddProduct = () => {
     setImage("");
     setImageData("");
     setListingType("others");
-    navigate("/Products");
+    navigate("/");
   };
 
   const handleImageChange = (e) => {
