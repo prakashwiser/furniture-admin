@@ -30,7 +30,7 @@ const Signup = () => {
       setPassword("");
       setRepassword("");
       toast.success("Signup successful! Redirecting to login...");
-      navigate("/Signin");
+      navigate("/Login");
     } else {
       toast.warn("Passwords do not match");
     }
